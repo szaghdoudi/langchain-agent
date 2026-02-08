@@ -1,17 +1,15 @@
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
+from typing import List
 
 from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
 from langchain_tavily import TavilySearch
-
-
-
-
 
 # Use a model that supports tool calling (e.g. llama3.2, llama3.1, mistral).
 # gemma3:270m does not support tools.
