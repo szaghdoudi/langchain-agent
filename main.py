@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -6,6 +7,9 @@ from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
+from tavily import TavilyClient
+
+tavily_client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 
 @tool
@@ -20,7 +24,7 @@ def search(query: str) -> str:
     """
 
     print(f"Searching for {query}")
-    return "This is a test search result"
+    return tavily_client.search(query)
 
 
 # Use a model that supports tool calling (e.g. llama3.2, llama3.1, mistral).
